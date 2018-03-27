@@ -2,6 +2,8 @@ package com.yyq.springsecuritydemo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 
 /**
  * @author yyq
@@ -13,19 +15,37 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
-    @Column(name = "t_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "t_name")
-    private String name;
+    private String username;
 
-    @Column(name = "t_age")
+    private String password;
+
     private Integer age;
 
-    @Column(name = "t_address")
     private String address;
 
+    @ManyToMany
+    @JoinTable(
+            name = "t_user_role",
+            joinColumns = {
+                 @JoinColumn(name = "user_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "role_id")
+            }
+    )
+    private List<Role> roles;
+
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -35,12 +55,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getAge() {
