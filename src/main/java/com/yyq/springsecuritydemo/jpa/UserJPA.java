@@ -12,4 +12,5 @@ import java.io.Serializable;
  * @date 2018/3/24 15:03
  */
 public interface UserJPA extends JpaRepository<User,Long>,JpaSpecificationExecutor<User>,Serializable {
+    User findByUsername(String username);
 }

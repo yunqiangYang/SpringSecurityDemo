@@ -17,7 +17,7 @@ public class Role {
 
     private String name;
 
-    @ManyToMany
+   /* @ManyToMany
     @JoinTable(
             name = "t_user_role",
             joinColumns = {
@@ -35,7 +35,7 @@ public class Role {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
+    }*/
 
     public Integer getId() {
         return id;
