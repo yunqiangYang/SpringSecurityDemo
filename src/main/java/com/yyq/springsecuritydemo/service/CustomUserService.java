@@ -2,6 +2,8 @@ package com.yyq.springsecuritydemo.service;
 
 import com.yyq.springsecuritydemo.entity.User;
 import com.yyq.springsecuritydemo.jpa.UserJPA;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomUserService implements UserDetailsService {
+
+    Logger logger = LoggerFactory.getLogger(CustomUserService.class);
 
     @Autowired
     private UserJPA userJPA;
@@ -28,6 +32,7 @@ public class CustomUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userJPA.findByUsername(username);
         if (user == null) {
+            logger.debug("用户："+username+"不存在！");
             throw new UsernameNotFoundException("用户："+username+"不存在！");
         }
         return user;
