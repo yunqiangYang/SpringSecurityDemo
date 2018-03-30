@@ -32,7 +32,10 @@ public class User implements Serializable,UserDetails {
 
     private String address;
 
-    @ManyToMany
+    /**
+     *  设置成非懒加载
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "t_user_role",
             joinColumns = {
@@ -53,9 +56,9 @@ public class User implements Serializable,UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
        List<GrantedAuthority> authorities = new ArrayList<>();
 
-       /*roles.forEach(role -> {
+       getRoles().forEach(role -> {
            authorities.add(new SimpleGrantedAuthority(role.getName()));
-       });*/
+       });
        return authorities;
     }
 
