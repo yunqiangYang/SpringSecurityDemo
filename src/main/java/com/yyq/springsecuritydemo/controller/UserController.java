@@ -26,7 +26,7 @@ public class UserController {
         return userJPA.findAll();
     }
 
-    @GetMapping("/{id}")
+   /* @GetMapping("/{id}")
     public User selectOne(@PathVariable Long id) {
         return userJPA.findById(id).get();
     }
@@ -39,6 +39,6 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         userJPA.deleteById(id);
-    }
+    }*/
 
 }

@@ -52,9 +52,10 @@ public class User implements Serializable,UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
        List<GrantedAuthority> authorities = new ArrayList<>();
-       roles.forEach(role -> {
+
+       /*roles.forEach(role -> {
            authorities.add(new SimpleGrantedAuthority(role.getName()));
-       });
+       });*/
        return authorities;
     }
 
